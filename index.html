@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Чистый Казахстан — вдохновляющий сайт о бережном отношении к природе Казахстана">
     <title>Чистый Казахстан</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,652 +13,940 @@
             --green: #2d6a4f;
             --green-light: #40916c;
             --green-soft: #95d5b2;
+            --green-dark: #1b4332;
             --blue: #1d3557;
             --blue-light: #457b9d;
             --gold: #e9c46a;
             --gold-soft: #f4a261;
-            --dark: #1a1a2e;
+            --dark: #0f0f1a;
+            --dark-card: #16162a;
             --white: #ffffff;
-            --off-white: #f8f9fa;
+            --muted: rgba(255,255,255,0.65);
+            --danger: #ff6b6b;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
             background: var(--dark);
             color: var(--white);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Hero Section */
+        /* ===== NAV ===== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0.9rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15,15,26,0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.3s;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            letter-spacing: 0.3px;
+        }
+        .nav-logo span { font-size: 1.15rem; }
+        .nav-progress {
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--green-soft), var(--gold));
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 2rem 1.5rem;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+            padding: 6rem 1.4rem 3rem;
+            background: 
+                linear-gradient(160deg, #0a1628 0%, #0f1c2e 35%, #132a1f 70%, #0f1a14 100%);
             position: relative;
             overflow: hidden;
         }
-
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at 30% 20%, rgba(45, 106, 79, 0.3) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 80%, rgba(233, 196, 106, 0.15) 0%, transparent 50%);
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 10%, rgba(45,106,79,0.35) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(233,196,106,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 50%, rgba(69,123,157,0.1) 0%, transparent 60%);
             pointer-events: none;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-        }
-
+        .hero-content { position: relative; z-index: 2; max-width: 580px; }
         .hero-badge {
-            display: inline-block;
-            background: rgba(45, 106, 79, 0.3);
-            border: 1px solid var(--green-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(45,106,79,0.25);
+            border: 1px solid rgba(149,213,178,0.35);
             color: var(--green-soft);
-            padding: 0.4rem 1.2rem;
+            padding: 0.45rem 1.15rem;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.6px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease;
+            margin-bottom: 1.6rem;
+            animation: fadeInUp 0.9s ease both;
         }
-
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 8vw, 3.5rem);
+            font-size: clamp(2.4rem, 9vw, 3.8rem);
             font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(135deg, #fff 0%, var(--green-soft) 50%, var(--gold) 100%);
+            line-height: 1.12;
+            margin-bottom: 1.3rem;
+            background: linear-gradient(135deg, #fff 0%, var(--green-soft) 45%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInUp 0.8s ease 0.1s both;
+            animation: fadeInUp 0.9s ease 0.12s both;
         }
-
-        .hero p {
+        .hero-sub {
             font-size: 1.05rem;
-            color: rgba(255,255,255,0.75);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            color: var(--muted);
+            margin-bottom: 2.2rem;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.9s ease 0.22s both;
         }
-
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+            animation: fadeInUp 0.9s ease 0.32s both;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat strong {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--green-soft);
+        }
+        .hero-stat span {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.45);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
         .scroll-hint {
             position: absolute;
-            bottom: 2rem;
+            bottom: 1.8rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
-            color: rgba(255,255,255,0.5);
-            font-size: 0.75rem;
-            animation: bounce 2s infinite;
+            gap: 0.45rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.7rem;
+            animation: bounce 2.2s infinite;
         }
-
-        .scroll-hint span {
-            width: 24px;
-            height: 40px;
-            border: 2px solid rgba(255,255,255,0.3);
+        .scroll-hint .mouse {
+            width: 22px;
+            height: 36px;
+            border: 2px solid rgba(255,255,255,0.28);
             border-radius: 12px;
             position: relative;
         }
-
-        .scroll-hint span::after {
+        .scroll-hint .mouse::after {
             content: '';
             position: absolute;
             top: 6px;
             left: 50%;
             transform: translateX(-50%);
-            width: 4px;
-            height: 8px;
+            width: 3px;
+            height: 7px;
             background: var(--green-soft);
             border-radius: 2px;
-            animation: scrollDot 1.5s infinite;
+            animation: scrollDot 1.6s infinite;
         }
 
-        /* Sections */
-        section {
-            padding: 4rem 1.5rem;
-            position: relative;
-        }
-
+        /* ===== SECTIONS COMMON ===== */
+        section { padding: 4.2rem 1.35rem; position: relative; }
         .section-label {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 2.2px;
             text-transform: uppercase;
             color: var(--green-soft);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem;
         }
-
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            font-size: clamp(1.55rem, 5.5vw, 2.15rem);
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.9rem;
             line-height: 1.25;
         }
-
         .section-text {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.7);
-            max-width: 500px;
+            font-size: 0.94rem;
+            color: var(--muted);
+            max-width: 520px;
         }
+        .divider {
+            width: 56px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-soft), var(--gold));
+            border-radius: 2px;
+            margin: 0.9rem 0 1.4rem;
+        }
+        .centered .divider { margin-left: auto; margin-right: auto; }
 
-        /* Nature Section */
+        /* ===== NATURE ===== */
         .nature {
-            background: linear-gradient(180deg, #0f3460 0%, #1a3a2a 100%);
+            background: linear-gradient(180deg, #0f1a14 0%, #132a1f 40%, #1a2e28 100%);
         }
-
+        .nature-intro { margin-bottom: 0.5rem; }
         .nature-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.9rem;
+            margin-top: 1.8rem;
         }
-
         .nature-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 1.5rem 1rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 18px;
+            padding: 1.35rem 1rem 1.2rem;
             text-align: center;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s, background 0.3s;
+            backdrop-filter: blur(8px);
+            transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-
+        .nature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(149,213,178,0.08), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
         .nature-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255,255,255,0.08);
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(149,213,178,0.2);
         }
-
+        .nature-card:hover::before { opacity: 1; }
         .nature-card .icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.6rem;
+            font-size: 2.1rem;
+            margin-bottom: 0.55rem;
+            display: block;
         }
-
         .nature-card h3 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
+            font-size: 0.92rem;
+            font-weight: 650;
+            margin-bottom: 0.25rem;
         }
-
         .nature-card p {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.5);
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.48);
+            line-height: 1.4;
+        }
+        .nature-places {
+            margin-top: 1.8rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            padding: 1.2rem 1.1rem;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .nature-places h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+        .nature-places ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+        .nature-places li {
+            font-size: 0.72rem;
+            background: rgba(255,255,255,0.06);
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            color: rgba(255,255,255,0.7);
         }
 
-        /* Problem Section */
+        /* ===== PROBLEM ===== */
         .problem {
-            background: linear-gradient(180deg, #1a3a2a 0%, #2d1b1b 50%, #1a1a2e 100%);
+            background: linear-gradient(180deg, #1a2e28 0%, #2a1a1a 45%, #1a1520 100%);
         }
-
         .problem-list {
-            margin-top: 2rem;
+            margin-top: 1.8rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.85rem;
         }
-
         .problem-item {
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            background: rgba(220, 50, 50, 0.08);
-            border: 1px solid rgba(220, 50, 50, 0.15);
-            border-radius: 14px;
-            padding: 1.2rem;
+            background: rgba(220,50,50,0.07);
+            border: 1px solid rgba(220,50,50,0.14);
+            border-radius: 16px;
+            padding: 1.15rem 1.1rem;
+            transition: background 0.3s;
         }
-
+        .problem-item:hover { background: rgba(220,50,50,0.11); }
         .problem-item .num {
             flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            background: rgba(220, 50, 50, 0.2);
+            width: 34px;
+            height: 34px;
+            background: rgba(255,107,107,0.18);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.85rem;
-            color: #ff6b6b;
+            font-size: 0.8rem;
+            color: var(--danger);
         }
-
         .problem-item h3 {
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             font-weight: 600;
             margin-bottom: 0.2rem;
         }
-
         .problem-item p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.55);
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.52);
+            line-height: 1.45;
         }
+        .problem-fact {
+            margin-top: 1.6rem;
+            background: rgba(0,0,0,0.25);
+            border-left: 3px solid var(--danger);
+            border-radius: 0 12px 12px 0;
+            padding: 1rem 1.1rem;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .problem-fact strong { color: var(--danger); }
 
-        /* Action Section */
+        /* ===== ACTION ===== */
         .action {
-            background: linear-gradient(180deg, #1a1a2e 0%, #1a2e1a 100%);
+            background: linear-gradient(180deg, #1a1520 0%, #14201a 50%, #122018 100%);
         }
-
         .action-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.85rem;
+            margin-top: 1.8rem;
         }
-
         .action-card {
-            background: linear-gradient(135deg, rgba(45, 106, 79, 0.2) 0%, rgba(29, 53, 87, 0.2) 100%);
-            border: 1px solid rgba(149, 213, 178, 0.15);
+            background: linear-gradient(135deg, rgba(45,106,79,0.18) 0%, rgba(29,53,87,0.15) 100%);
+            border: 1px solid rgba(149,213,178,0.14);
             border-radius: 18px;
-            padding: 1.5rem;
+            padding: 1.25rem 1.15rem;
             display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            transition: transform 0.3s;
+            align-items: flex-start;
+            gap: 1.1rem;
+            transition: transform 0.3s, border-color 0.3s;
         }
-
         .action-card:hover {
-            transform: scale(1.02);
+            transform: translateY(-3px);
+            border-color: rgba(149,213,178,0.28);
         }
-
         .action-card .icon-box {
             flex-shrink: 0;
-            width: 56px;
-            height: 56px;
-            background: rgba(45, 106, 79, 0.3);
+            width: 50px;
+            height: 50px;
+            background: rgba(45,106,79,0.28);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+            font-size: 1.45rem;
+        }
+        .action-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        .action-card p {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.52);
+            line-height: 1.45;
         }
 
-        .action-card h3 {
-            font-size: 1rem;
+        /* ===== PEOPLE ===== */
+        .people {
+            background: linear-gradient(180deg, #122018 0%, #0f1a24 100%);
+        }
+        .people-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+            margin-top: 1.8rem;
+        }
+        .people-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 1.3rem 1rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .people-card:hover { transform: translateY(-4px); }
+        .people-card .emoji {
+            font-size: 1.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .people-card h3 {
+            font-size: 0.88rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
-
-        .action-card p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.55);
+        .people-card p {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.48);
         }
 
-        /* Contrast Section */
+        /* ===== CONTRAST ===== */
         .contrast {
-            background: linear-gradient(180deg, #1a2e1a 0%, #0f3460 100%);
+            background: linear-gradient(180deg, #0f1a24 0%, #0f1c18 50%, #0a1620 100%);
             text-align: center;
         }
-
         .contrast-compare {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.85rem;
+            margin-top: 1.8rem;
         }
-
         .before, .after {
-            border-radius: 16px;
-            padding: 2rem 1rem;
+            border-radius: 18px;
+            padding: 1.6rem 1rem;
             position: relative;
         }
-
         .before {
-            background: linear-gradient(135deg, rgba(100, 30, 30, 0.4), rgba(60, 20, 20, 0.5));
-            border: 1px solid rgba(220, 80, 80, 0.2);
+            background: linear-gradient(160deg, rgba(90,25,25,0.45), rgba(50,15,15,0.55));
+            border: 1px solid rgba(220,80,80,0.22);
         }
-
         .after {
-            background: linear-gradient(135deg, rgba(30, 80, 50, 0.4), rgba(20, 60, 40, 0.5));
-            border: 1px solid rgba(100, 200, 120, 0.2);
+            background: linear-gradient(160deg, rgba(25,70,45,0.45), rgba(15,50,35,0.55));
+            border: 1px solid rgba(100,200,120,0.22);
         }
-
         .before .label, .after .label {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.6px;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
         }
-
-        .before .label { color: #ff6b6b; }
+        .before .label { color: var(--danger); }
         .after .label { color: var(--green-soft); }
-
         .before .emoji, .after .emoji {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
+            font-size: 2.3rem;
+            margin-bottom: 0.65rem;
+            display: block;
         }
-
         .before h3, .after h3 {
             font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
-
         .before p, .after p {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.55);
+            font-size: 0.73rem;
+            color: rgba(255,255,255,0.52);
+            line-height: 1.4;
         }
 
-        /* Final Section */
+        /* ===== TIPS ===== */
+        .tips {
+            background: linear-gradient(180deg, #0a1620 0%, #0f1a14 100%);
+        }
+        .tips-list {
+            margin-top: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 1rem 1.1rem;
+            transition: background 0.25s;
+        }
+        .tip-item:hover { background: rgba(255,255,255,0.07); }
+        .tip-item .check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: rgba(45,106,79,0.35);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--green-soft);
+        }
+        .tip-item span {
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        /* ===== PLEDGE ===== */
+        .pledge {
+            background: linear-gradient(180deg, #0f1a14 0%, #0a1420 100%);
+            text-align: center;
+        }
+        .pledge-box {
+            background: linear-gradient(145deg, rgba(45,106,79,0.2), rgba(29,53,87,0.18));
+            border: 1px solid rgba(149,213,178,0.2);
+            border-radius: 22px;
+            padding: 2rem 1.4rem;
+            margin-top: 1.5rem;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pledge-box p {
+            font-size: 0.92rem;
+            color: var(--muted);
+            margin-bottom: 1.4rem;
+            line-height: 1.55;
+        }
+        .pledge-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+            color: white;
+            padding: 0.95rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(45,106,79,0.4);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .pledge-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(45,106,79,0.5);
+        }
+        .pledge-btn.done {
+            background: linear-gradient(135deg, #1b4332, #2d6a4f);
+            pointer-events: none;
+        }
+        .pledge-count {
+            margin-top: 1.1rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        /* ===== FINAL ===== */
         .final {
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 4rem 1.5rem;
-            background: linear-gradient(180deg, #0f3460 0%, #1a1a2e 40%, #0a1628 100%);
+            padding: 5rem 1.4rem;
+            background: linear-gradient(180deg, #0a1420 0%, #0c1220 30%, #0a0f18 70%, #080c14 100%);
             position: relative;
             overflow: hidden;
         }
-
         .final::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at 50% 30%, rgba(233, 196, 106, 0.12) 0%, transparent 60%),
-                        radial-gradient(ellipse at 50% 70%, rgba(45, 106, 79, 0.2) 0%, transparent 50%);
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 70% 40% at 50% 20%, rgba(233,196,106,0.1) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 35% at 50% 75%, rgba(45,106,79,0.18) 0%, transparent 50%);
             pointer-events: none;
         }
-
-        .final-content {
-            position: relative;
-            z-index: 2;
-            max-width: 520px;
-        }
-
+        .final-content { position: relative; z-index: 2; max-width: 500px; }
+        .flag-emoji { font-size: 2.2rem; margin-bottom: 1.1rem; }
         .final-quote {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 5.5vw, 2rem);
+            font-size: clamp(1.45rem, 5.5vw, 1.95rem);
             font-weight: 700;
             line-height: 1.3;
-            margin-bottom: 2rem;
+            margin-bottom: 1.8rem;
             background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .final-actions {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.6rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .final-actions span {
-            background: rgba(45, 106, 79, 0.25);
-            border: 1px solid rgba(149, 213, 178, 0.25);
-            color: var(--green-soft);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .final-cta {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.7);
+            gap: 0.5rem;
             margin-bottom: 2rem;
         }
-
+        .final-actions span {
+            background: rgba(45,106,79,0.22);
+            border: 1px solid rgba(149,213,178,0.22);
+            color: var(--green-soft);
+            padding: 0.45rem 0.95rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .final-cta {
+            font-size: 0.98rem;
+            color: var(--muted);
+            margin-bottom: 1.8rem;
+            line-height: 1.55;
+        }
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
             color: white;
-            padding: 1rem 2.2rem;
+            padding: 0.95rem 2rem;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
             text-decoration: none;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 30px rgba(45, 106, 79, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
+            letter-spacing: 0.3px;
+            box-shadow: 0 8px 28px rgba(45,106,79,0.4);
+            transition: transform 0.25s, box-shadow 0.25s;
             border: none;
             cursor: pointer;
         }
-
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(45, 106, 79, 0.5);
+            box-shadow: 0 12px 36px rgba(45,106,79,0.5);
         }
 
-        .flag-emoji {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            padding: 2rem 1.5rem;
-            background: #0a0a14;
-            color: rgba(255,255,255,0.35);
-            font-size: 0.75rem;
+            padding: 1.8rem 1.3rem;
+            background: #07070f;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.72rem;
+            line-height: 1.6;
         }
+        footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
 
-        /* Animations */
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(28px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-8px); }
+            50% { transform: translateX(-50%) translateY(-7px); }
         }
-
         @keyframes scrollDot {
             0% { opacity: 1; top: 6px; }
-            100% { opacity: 0; top: 20px; }
+            100% { opacity: 0; top: 18px; }
         }
-
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(36px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
         }
-
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Decorative elements */
-        .divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--green-soft), var(--gold));
-            border-radius: 2px;
-            margin: 1rem 0 1.5rem;
+        /* Confetti for pledge */
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--green-soft);
+            top: -10px;
+            z-index: 999;
+            animation: fall 2.5s linear forwards;
+            pointer-events: none;
         }
-
-        .centered .divider {
-            margin-left: auto;
-            margin-right: auto;
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-logo"><span>🇰🇿</span> Чистый Казахстан</div>
+        <div class="nav-progress" id="progress"></div>
+    </nav>
+
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="top">
         <div class="hero-content">
-            <div class="hero-badge">🇰🇿 Казахстан</div>
+            <div class="hero-badge">🇰🇿 Национальная идея</div>
             <h1>Чистый<br>Казахстан</h1>
-            <p>Наша природа — наше богатство.<br>Давайте сохраним её вместе.</p>
+            <p class="hero-sub">Наша природа — наше богатство и наследие. Давайте сохраним её вместе для будущих поколений.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <strong>9+</strong>
+                    <span>млн км²</span>
+                </div>
+                <div class="hero-stat">
+                    <strong>100+</strong>
+                    <span>нац.парков</span>
+                </div>
+                <div class="hero-stat">
+                    <strong>∞</strong>
+                    <span>красоты</span>
+                </div>
+            </div>
         </div>
         <div class="scroll-hint">
-            <span></span>
+            <div class="mouse"></div>
             листайте ниже
         </div>
     </section>
 
     <!-- NATURE -->
-    <section class="nature">
-        <div class="reveal">
-            <div class="section-label">Начало</div>
-            <h2 class="section-title">Красота нашей природы</h2>
+    <section class="nature" id="nature">
+        <div class="reveal nature-intro">
+            <div class="section-label">01 · Начало</div>
+            <h2 class="section-title">Красота, которой можно гордиться</h2>
             <div class="divider"></div>
-            <p class="section-text">Горы Тянь-Шаня, бескрайние степи, чистые озёра, густые леса и современные города — это лицо Казахстана. Природа, которой можно гордиться.</p>
+            <p class="section-text">От снежных вершин Тянь-Шаня до бескрайних степей, от бирюзовых озёр до густых лесов — Казахстан обладает уникальной природой, которая вдохновляет и дарит силу.</p>
         </div>
         <div class="nature-grid reveal">
             <div class="nature-card">
-                <div class="icon">🏔️</div>
+                <span class="icon">🏔️</span>
                 <h3>Горы</h3>
-                <p>Тянь-Шань, Алтай, Каратау</p>
+                <p>Тянь-Шань, Алтай, Каратау, Джунгарский Алатау</p>
             </div>
             <div class="nature-card">
-                <div class="icon">🌾</div>
+                <span class="icon">🌾</span>
                 <h3>Степи</h3>
-                <p>Бескрайние просторы</p>
+                <p>Самая большая сухая степь в мире — сердце страны</p>
             </div>
             <div class="nature-card">
-                <div class="icon">🌊</div>
+                <span class="icon">🌊</span>
                 <h3>Озёра</h3>
-                <p>Балхаш, Алаколь, Иссык-Куль</p>
+                <p>Балхаш, Алаколь, Большое Алматинское, Кольсай</p>
             </div>
             <div class="nature-card">
-                <div class="icon">🌲</div>
-                <h3>Леса</h3>
-                <p>Хвойные и лиственные</p>
+                <span class="icon">🌲</span>
+                <h3>Леса и парки</h3>
+                <p>Хвойные массивы, национальные парки и заповедники</p>
             </div>
+        </div>
+        <div class="nature-places reveal">
+            <h4>Места, которые стоит увидеть</h4>
+            <ul>
+                <li>Кольсайские озёра</li>
+                <li>Чарынский каньон</li>
+                <li>Большое Алматинское</li>
+                <li>Алаколь</li>
+                <li>Катон-Карагай</li>
+                <li>Баянауль</li>
+                <li>Иле-Алатау</li>
+                <li>Каракер</li>
+            </ul>
         </div>
     </section>
 
     <!-- PROBLEM -->
-    <section class="problem">
+    <section class="problem" id="problem">
         <div class="reveal">
-            <div class="section-label">Проблема</div>
-            <h2 class="section-title">Загрязнение угрожает нашей природе</h2>
+            <div class="section-label">02 · Проблема</div>
+            <h2 class="section-title">Загрязнение угрожает красоте</h2>
             <div class="divider"></div>
-            <p class="section-text">Мусор на улицах, пластиковые бутылки, пакеты и загрязнённые территории разрушают красоту Казахстана. Каждый день мы теряем то, что должны беречь.</p>
+            <p class="section-text">Мусор на улицах, пластиковые бутылки, пакеты и заброшенные территории медленно разрушают то, чем мы гордимся. Каждый брошенный окурок — это удар по будущему.</p>
         </div>
         <div class="problem-list reveal">
             <div class="problem-item">
                 <div class="num">01</div>
                 <div>
-                    <h3>Мусор на улицах</h3>
-                    <p>Отходы в парках, дворах и на природных территориях</p>
+                    <h3>Мусор в городах и парках</h3>
+                    <p>Отходы на улицах, во дворах, в скверах и на природных территориях портят вид и вредят здоровью</p>
                 </div>
             </div>
             <div class="problem-item">
                 <div class="num">02</div>
                 <div>
-                    <h3>Пластик и пакеты</h3>
-                    <p>Пластиковые отходы разлагаются сотни лет и отравляют почву</p>
+                    <h3>Пластик и одноразовая упаковка</h3>
+                    <p>Пластиковые бутылки и пакеты разлагаются сотни лет, отравляя почву и воду</p>
                 </div>
             </div>
             <div class="problem-item">
                 <div class="num">03</div>
                 <div>
-                    <h3>Загрязнённые зоны</h3>
-                    <p>Территории, которые теряют свою красоту и безопасность</p>
+                    <h3>Заброшенные природные зоны</h3>
+                    <p>Берега рек и озёр, туристические тропы и пикник-зоны страдают от безответственности</p>
                 </div>
             </div>
+        </div>
+        <div class="problem-fact reveal">
+            <strong>Факт:</strong> Один пластиковый пакет может разлагаться до 500 лет. Каждый из нас может остановить этот цикл прямо сегодня.
         </div>
     </section>
 
     <!-- ACTION -->
-    <section class="action">
+    <section class="action" id="action">
         <div class="reveal">
-            <div class="section-label">Решение</div>
-            <h2 class="section-title">Люди, которые меняют мир</h2>
+            <div class="section-label">03 · Решение</div>
+            <h2 class="section-title">Что мы можем сделать</h2>
             <div class="divider"></div>
-            <p class="section-text">Школьники, студенты, семьи и волонтёры каждый день делают Казахстан чище. Они убирают, сортируют, сажают и вдохновляют других.</p>
+            <p class="section-text">Изменения начинаются с маленьких действий. Школьники, студенты, семьи и волонтёры уже делают Казахстан чище каждый день.</p>
         </div>
         <div class="action-grid reveal">
             <div class="action-card">
                 <div class="icon-box">🤝</div>
                 <div>
-                    <h3>Убирают территории</h3>
-                    <p>Волонтёры и школьники очищают парки, дворы и берега</p>
+                    <h3>Убирать территории</h3>
+                    <p>Участвовать в субботниках, очищать парки, дворы, берега рек и озёр вместе с соседями</p>
                 </div>
             </div>
             <div class="action-card">
                 <div class="icon-box">♻️</div>
                 <div>
-                    <h3>Сортируют мусор</h3>
-                    <p>Разделяют отходы для переработки и утилизации</p>
+                    <h3>Сортировать отходы</h3>
+                    <p>Разделять пластик, бумагу, стекло и органику — это простой шаг к переработке</p>
                 </div>
             </div>
             <div class="action-card">
                 <div class="icon-box">🌱</div>
                 <div>
-                    <h3>Сажают деревья</h3>
-                    <p>Восстанавливают зелёные зоны и лесополосы</p>
+                    <h3>Сажать деревья</h3>
+                    <p>Участвовать в акциях озеленения, сажать деревья во дворах и парках</p>
                 </div>
             </div>
             <div class="action-card">
                 <div class="icon-box">🗭</div>
                 <div>
-                    <h3>Выбрасывают правильно</h3>
-                    <p>Используют специальные контейнеры для раздельного сбора</p>
+                    <h3>Выбрасывать правильно</h3>
+                    <p>Использовать специальные контейнеры и никогда не оставлять мусор на природе</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTRAST -->
-    <section class="contrast">
-        <div class="reveal centered">
-            <div class="section-label">Трансформация</div>
-            <h2 class="section-title">До и После</h2>
-            <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
-            <p class="section-text" style="margin:0 auto;">Каждое действие меняет картину. Загрязнённая территория становится чистой и красивой.</p>
+    <!-- PEOPLE -->
+    <section class="people" id="people">
+        <div class="reveal">
+            <div class="section-label">04 · Люди</div>
+            <h2 class="section-title">Те, кто уже действует</h2>
+            <div class="divider"></div>
+            <p class="section-text">Тысячи казахстанцев каждый день выходят на уборку, сажают деревья и вдохновляют других своим примером.</p>
         </div>
-        <div class="contrast-compare reveal">
-            <div class="before">
-                <div class="label">До</div>
-                <div class="emoji">🗭</div>
-                <h3>Загрязнение</h3>
-                <p>Мусор, пластик, заброшенные места</p>
+        <div class="people-grid reveal">
+            <div class="people-card">
+                <div class="emoji">👨‍👩‍👧‍👦</div>
+                <h3>Семьи</h3>
+                <p>Учат детей беречь природу с малых лет</p>
             </div>
-            <div class="after">
-                <div class="label">После</div>
-                <div class="emoji">🌿</div>
-                <h3>Чистота</h3>
-                <p>Зелень, порядок, жизнь</p>
+            <div class="people-card">
+                <div class="emoji">👩‍🎓</div>
+                <h3>Студенты</h3>
+                <p>Организуют экоакции в университетах и городах</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">🎓</div>
+                <h3>Школьники</h3>
+                <p>Участвуют в субботниках и зелёных уроках</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">🤝</div>
+                <h3>Волонтёры</h3>
+                <p>Регулярно чистят парки и природные зоны</p>
             </div>
         </div>
     </section>
 
+    <!-- CONTRAST -->
+    <section class="contrast" id="contrast">
+        <div class="reveal centered">
+            <div class="section-label">05 · Трансформация</div>
+            <h2 class="section-title">До и После</h2>
+            <div class="divider"></div>
+            <p class="section-text" style="margin:0 auto;">Каждое действие меняет картину. Загрязнённая территория может стать чистой и красивой.</p>
+        </div>
+        <div class="contrast-compare reveal">
+            <div class="before">
+                <div class="label">До</div>
+                <span class="emoji">🗭</span>
+                <h3>Загрязнение</h3>
+                <p>Мусор, пластик, заброшенные места, серый вид</p>
+            </div>
+            <div class="after">
+                <div class="label">После</div>
+                <span class="emoji">🌿</span>
+                <h3>Чистота</h3>
+                <p>Зелень, порядок, свежий воздух, жизнь</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPS -->
+    <section class="tips" id="tips">
+        <div class="reveal">
+            <div class="section-label">06 · Практика</div>
+            <h2 class="section-title">Начни сегодня</h2>
+            <div class="divider"></div>
+            <p class="section-text">Простые привычки, которые меняют окружающий мир. Выбери хотя бы одно и начни прямо сейчас.</p>
+        </div>
+        <div class="tips-list reveal">
+            <div class="tip-item"><div class="check">✓</div><span>Бери с собой многоразовую сумку</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Откажись от пластиковых пакетов в магазинах</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Сортируй мусор дома и на работе</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Участвуй в местных субботниках</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Сажай деревья и цветы во дворе</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Расскаживай друзьям о важности чистоты</span></div>
+        </div>
+    </section>
+
+    <!-- PLEDGE -->
+    <section class="pledge" id="pledge">
+        <div class="reveal centered">
+            <div class="section-label">07 · Обещание</div>
+            <h2 class="section-title">Сделай свой выбор</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="pledge-box reveal">
+            <p>Я обещаю беречь природу Казахстана: не мусорить, сортировать отходы, участвовать в уборках и вдохновлять других.</p>
+            <button class="pledge-btn" id="pledgeBtn" onclick="makePledge()">
+                <span>🌱</span> Я присоединяюсь
+            </button>
+            <div class="pledge-count" id="pledgeCount">Будь среди тех, кто уже сделал выбор</div>
+        </div>
+    </section>
+
     <!-- FINAL -->
-    <section class="final">
+    <section class="final" id="final">
         <div class="final-content reveal">
             <div class="flag-emoji">🇰🇿</div>
             <p class="final-quote">«Чистый Казахстан<br>начинается с каждого из нас»</p>
@@ -668,16 +957,25 @@
                 <span>Сажай</span>
                 <span>Береги природу</span>
             </div>
-            <p class="final-cta">Каждый может сделать Казахстан чище.<br>Начни сегодня.</p>
-            <a href="#" class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Вернуться к началу</a>
+            <p class="final-cta">Каждый может сделать Казахстан чище.<br>Начни сегодня — и природа ответит тебе добром.</p>
+            <a href="#top" class="btn">Вернуться к началу</a>
         </div>
     </section>
 
     <footer>
-        Чистый Казахстан · С любовью к природе · 2026
+        Чистый Казахстан · С любовью к природе · 2026<br>
+        Сделано для тех, кто хочет видеть страну чистой
     </footer>
 
     <script>
+        // Progress bar
+        const progress = document.getElementById('progress');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / h) * 100;
+            progress.style.width = scrolled + '%';
+        });
+
         // Reveal on scroll
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
@@ -686,9 +984,41 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.15 });
-
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
         reveals.forEach(el => observer.observe(el));
+
+        // Pledge
+        let pledged = localStorage.getItem('cleanKazakhstanPledge');
+        const btn = document.getElementById('pledgeBtn');
+        const countEl = document.getElementById('pledgeCount');
+
+        function updatePledgeUI() {
+            if (pledged) {
+                btn.classList.add('done');
+                btn.innerHTML = '<span>✓</span> Ты снами!';
+                countEl.textContent = 'Спасибо! Твоё обещание сохранено';
+            }
+        }
+        updatePledgeUI();
+
+        function makePledge() {
+            if (pledged) return;
+            pledged = true;
+            localStorage.setItem('cleanKazakhstanPledge', 'true');
+            updatePledgeUI();
+
+            // Confetti
+            for (let i = 0; i < 40; i++) {
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.background = ['#95d5b2','#e9c46a','#40916c','#f4a261','#457b9d'][Math.floor(Math.random()*5)];
+                c.style.animationDuration = (1.8 + Math.random() * 1.5) + 's';
+                c.style.animationDelay = Math.random() * 0.4 + 's';
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 3500);
+            }
+        }
     </script>
 </body>
 </html>
