@@ -38,6 +38,8 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        img { max-width: 100%; display: block; }
+
         /* ===== NAV ===== */
         .nav {
             position: fixed;
@@ -47,11 +49,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(15,15,26,0.75);
+            background: rgba(15,15,26,0.8);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255,255,255,0.06);
-            transition: background 0.3s;
         }
         .nav-logo {
             font-weight: 700;
@@ -59,7 +60,6 @@
             display: flex;
             align-items: center;
             gap: 0.45rem;
-            letter-spacing: 0.3px;
         }
         .nav-logo span { font-size: 1.15rem; }
         .nav-progress {
@@ -81,8 +81,7 @@
             align-items: center;
             text-align: center;
             padding: 6rem 1.4rem 3rem;
-            background: 
-                linear-gradient(160deg, #0a1628 0%, #0f1c2e 35%, #132a1f 70%, #0f1a14 100%);
+            background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             position: relative;
             overflow: hidden;
         }
@@ -90,19 +89,15 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: 
-                radial-gradient(ellipse 80% 50% at 20% 10%, rgba(45,106,79,0.35) 0%, transparent 55%),
-                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(233,196,106,0.12) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 30% at 50% 50%, rgba(69,123,157,0.1) 0%, transparent 60%);
-            pointer-events: none;
+            background: linear-gradient(160deg, rgba(10,22,40,0.85) 0%, rgba(15,28,46,0.8) 40%, rgba(19,42,31,0.88) 100%);
         }
         .hero-content { position: relative; z-index: 2; max-width: 580px; }
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            background: rgba(45,106,79,0.25);
-            border: 1px solid rgba(149,213,178,0.35);
+            background: rgba(45,106,79,0.35);
+            border: 1px solid rgba(149,213,178,0.4);
             color: var(--green-soft);
             padding: 0.45rem 1.15rem;
             border-radius: 50px;
@@ -127,7 +122,7 @@
         }
         .hero-sub {
             font-size: 1.05rem;
-            color: var(--muted);
+            color: rgba(255,255,255,0.85);
             margin-bottom: 2.2rem;
             max-width: 420px;
             margin-left: auto;
@@ -138,12 +133,9 @@
             display: flex;
             justify-content: center;
             gap: 1.8rem;
-            margin-top: 0.5rem;
             animation: fadeInUp 0.9s ease 0.32s both;
         }
-        .hero-stat {
-            text-align: center;
-        }
+        .hero-stat { text-align: center; }
         .hero-stat strong {
             display: block;
             font-size: 1.35rem;
@@ -152,7 +144,7 @@
         }
         .hero-stat span {
             font-size: 0.7rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255,255,255,0.5);
             text-transform: uppercase;
             letter-spacing: 0.8px;
         }
@@ -165,14 +157,15 @@
             flex-direction: column;
             align-items: center;
             gap: 0.45rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.5);
             font-size: 0.7rem;
             animation: bounce 2.2s infinite;
+            z-index: 2;
         }
         .scroll-hint .mouse {
             width: 22px;
             height: 36px;
-            border: 2px solid rgba(255,255,255,0.28);
+            border: 2px solid rgba(255,255,255,0.35);
             border-radius: 12px;
             position: relative;
         }
@@ -189,7 +182,7 @@
             animation: scrollDot 1.6s infinite;
         }
 
-        /* ===== SECTIONS COMMON ===== */
+        /* ===== SECTIONS ===== */
         section { padding: 4.2rem 1.35rem; position: relative; }
         .section-label {
             display: inline-block;
@@ -221,60 +214,144 @@
         }
         .centered .divider { margin-left: auto; margin-right: auto; }
 
-        /* ===== NATURE ===== */
-        .nature {
-            background: linear-gradient(180deg, #0f1a14 0%, #132a1f 40%, #1a2e28 100%);
+        /* ===== PHOTO GALLERY ===== */
+        .gallery {
+            background: linear-gradient(180deg, #0f1a14 0%, #132a1f 100%);
         }
-        .nature-intro { margin-bottom: 0.5rem; }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.7rem;
+            margin-top: 1.8rem;
+        }
+        .photo-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1.15;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .photo-card.wide {
+            grid-column: 1 / -1;
+            aspect-ratio: 16 / 9;
+        }
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+        }
+        .photo-card:hover img {
+            transform: scale(1.08);
+        }
+        .photo-card .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 0.9rem 0.85rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .photo-card .caption span {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.65);
+            margin-top: 0.15rem;
+        }
+
+        /* Artistic / Painting style */
+        .art-section {
+            background: linear-gradient(180deg, #132a1f 0%, #1a2e28 100%);
+        }
+        .art-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1.8rem;
+        }
+        .art-card {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            aspect-ratio: 16 / 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        }
+        .art-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.1) contrast(1.05);
+        }
+        .art-card .art-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(45,106,79,0.15), rgba(233,196,106,0.1));
+            pointer-events: none;
+        }
+        .art-card .art-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.8rem 1.1rem 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
+        }
+        .art-card .art-label h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        .art-card .art-label p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* Nature cards with images */
         .nature-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.9rem;
+            gap: 0.85rem;
             margin-top: 1.8rem;
         }
         .nature-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 18px;
-            padding: 1.35rem 1rem 1.2rem;
-            text-align: center;
-            backdrop-filter: blur(8px);
-            transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background 0.3s, border-color 0.3s;
-            position: relative;
+            border-radius: 16px;
             overflow: hidden;
+            position: relative;
+            aspect-ratio: 1 / 1.1;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
-        .nature-card::before {
-            content: '';
+        .nature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .nature-card:hover img { transform: scale(1.06); }
+        .nature-card .info {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(149,213,178,0.08), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .nature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.07);
-            border-color: rgba(149,213,178,0.2);
-        }
-        .nature-card:hover::before { opacity: 1; }
-        .nature-card .icon {
-            font-size: 2.1rem;
-            margin-bottom: 0.55rem;
-            display: block;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.4rem 0.85rem 0.9rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.82));
         }
         .nature-card h3 {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 650;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
         }
         .nature-card p {
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.48);
-            line-height: 1.4;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
         }
+
         .nature-places {
             margin-top: 1.8rem;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.22);
             border-radius: 16px;
             padding: 1.2rem 1.1rem;
             border: 1px solid rgba(255,255,255,0.06);
@@ -284,7 +361,6 @@
             font-weight: 600;
             color: var(--gold);
             margin-bottom: 0.7rem;
-            letter-spacing: 0.5px;
         }
         .nature-places ul {
             list-style: none;
@@ -294,13 +370,13 @@
         }
         .nature-places li {
             font-size: 0.72rem;
-            background: rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.07);
             padding: 0.35rem 0.75rem;
             border-radius: 50px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.75);
         }
 
-        /* ===== PROBLEM ===== */
+        /* Rest of sections keep previous styles */
         .problem {
             background: linear-gradient(180deg, #1a2e28 0%, #2a1a1a 45%, #1a1520 100%);
         }
@@ -318,9 +394,7 @@
             border: 1px solid rgba(220,50,50,0.14);
             border-radius: 16px;
             padding: 1.15rem 1.1rem;
-            transition: background 0.3s;
         }
-        .problem-item:hover { background: rgba(220,50,50,0.11); }
         .problem-item .num {
             flex-shrink: 0;
             width: 34px;
@@ -334,16 +408,8 @@
             font-size: 0.8rem;
             color: var(--danger);
         }
-        .problem-item h3 {
-            font-size: 0.93rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-        .problem-item p {
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.52);
-            line-height: 1.45;
-        }
+        .problem-item h3 { font-size: 0.93rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .problem-item p { font-size: 0.78rem; color: rgba(255,255,255,0.52); }
         .problem-fact {
             margin-top: 1.6rem;
             background: rgba(0,0,0,0.25);
@@ -355,7 +421,6 @@
         }
         .problem-fact strong { color: var(--danger); }
 
-        /* ===== ACTION ===== */
         .action {
             background: linear-gradient(180deg, #1a1520 0%, #14201a 50%, #122018 100%);
         }
@@ -373,11 +438,6 @@
             display: flex;
             align-items: flex-start;
             gap: 1.1rem;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        .action-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(149,213,178,0.28);
         }
         .action-card .icon-box {
             flex-shrink: 0;
@@ -390,18 +450,9 @@
             justify-content: center;
             font-size: 1.45rem;
         }
-        .action-card h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-        .action-card p {
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.52);
-            line-height: 1.45;
-        }
+        .action-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .action-card p { font-size: 0.78rem; color: rgba(255,255,255,0.52); }
 
-        /* ===== PEOPLE ===== */
         .people {
             background: linear-gradient(180deg, #122018 0%, #0f1a24 100%);
         }
@@ -417,24 +468,11 @@
             border-radius: 16px;
             padding: 1.3rem 1rem;
             text-align: center;
-            transition: transform 0.3s;
         }
-        .people-card:hover { transform: translateY(-4px); }
-        .people-card .emoji {
-            font-size: 1.9rem;
-            margin-bottom: 0.5rem;
-        }
-        .people-card h3 {
-            font-size: 0.88rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        .people-card p {
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.48);
-        }
+        .people-card .emoji { font-size: 1.9rem; margin-bottom: 0.5rem; }
+        .people-card h3 { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .people-card p { font-size: 0.72rem; color: rgba(255,255,255,0.48); }
 
-        /* ===== CONTRAST ===== */
         .contrast {
             background: linear-gradient(180deg, #0f1a24 0%, #0f1c18 50%, #0a1620 100%);
             text-align: center;
@@ -448,7 +486,6 @@
         .before, .after {
             border-radius: 18px;
             padding: 1.6rem 1rem;
-            position: relative;
         }
         .before {
             background: linear-gradient(160deg, rgba(90,25,25,0.45), rgba(50,15,15,0.55));
@@ -472,18 +509,9 @@
             margin-bottom: 0.65rem;
             display: block;
         }
-        .before h3, .after h3 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.35rem;
-        }
-        .before p, .after p {
-            font-size: 0.73rem;
-            color: rgba(255,255,255,0.52);
-            line-height: 1.4;
-        }
+        .before h3, .after h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.35rem; }
+        .before p, .after p { font-size: 0.73rem; color: rgba(255,255,255,0.52); }
 
-        /* ===== TIPS ===== */
         .tips {
             background: linear-gradient(180deg, #0a1620 0%, #0f1a14 100%);
         }
@@ -501,9 +529,7 @@
             border: 1px solid rgba(255,255,255,0.07);
             border-radius: 14px;
             padding: 1rem 1.1rem;
-            transition: background 0.25s;
         }
-        .tip-item:hover { background: rgba(255,255,255,0.07); }
         .tip-item .check {
             flex-shrink: 0;
             width: 28px;
@@ -516,12 +542,8 @@
             font-size: 0.85rem;
             color: var(--green-soft);
         }
-        .tip-item span {
-            font-size: 0.88rem;
-            font-weight: 500;
-        }
+        .tip-item span { font-size: 0.88rem; font-weight: 500; }
 
-        /* ===== PLEDGE ===== */
         .pledge {
             background: linear-gradient(180deg, #0f1a14 0%, #0a1420 100%);
             text-align: center;
@@ -540,7 +562,6 @@
             font-size: 0.92rem;
             color: var(--muted);
             margin-bottom: 1.4rem;
-            line-height: 1.55;
         }
         .pledge-btn {
             display: inline-flex;
@@ -555,11 +576,6 @@
             border: none;
             cursor: pointer;
             box-shadow: 0 8px 28px rgba(45,106,79,0.4);
-            transition: transform 0.25s, box-shadow 0.25s;
-        }
-        .pledge-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(45,106,79,0.5);
         }
         .pledge-btn.done {
             background: linear-gradient(135deg, #1b4332, #2d6a4f);
@@ -571,7 +587,6 @@
             color: rgba(255,255,255,0.45);
         }
 
-        /* ===== FINAL ===== */
         .final {
             min-height: 100vh;
             min-height: 100dvh;
@@ -581,18 +596,14 @@
             align-items: center;
             text-align: center;
             padding: 5rem 1.4rem;
-            background: linear-gradient(180deg, #0a1420 0%, #0c1220 30%, #0a0f18 70%, #080c14 100%);
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             position: relative;
-            overflow: hidden;
         }
         .final::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: 
-                radial-gradient(ellipse 70% 40% at 50% 20%, rgba(233,196,106,0.1) 0%, transparent 55%),
-                radial-gradient(ellipse 60% 35% at 50% 75%, rgba(45,106,79,0.18) 0%, transparent 50%);
-            pointer-events: none;
+            background: linear-gradient(180deg, rgba(10,20,32,0.88) 0%, rgba(12,18,32,0.9) 50%, rgba(8,12,20,0.95) 100%);
         }
         .final-content { position: relative; z-index: 2; max-width: 500px; }
         .flag-emoji { font-size: 2.2rem; margin-bottom: 1.1rem; }
@@ -615,8 +626,8 @@
             margin-bottom: 2rem;
         }
         .final-actions span {
-            background: rgba(45,106,79,0.22);
-            border: 1px solid rgba(149,213,178,0.22);
+            background: rgba(45,106,79,0.25);
+            border: 1px solid rgba(149,213,178,0.25);
             color: var(--green-soft);
             padding: 0.45rem 0.95rem;
             border-radius: 50px;
@@ -625,9 +636,8 @@
         }
         .final-cta {
             font-size: 0.98rem;
-            color: var(--muted);
+            color: rgba(255,255,255,0.8);
             margin-bottom: 1.8rem;
-            line-height: 1.55;
         }
         .btn {
             display: inline-block;
@@ -638,29 +648,17 @@
             font-size: 0.92rem;
             font-weight: 700;
             text-decoration: none;
-            letter-spacing: 0.3px;
             box-shadow: 0 8px 28px rgba(45,106,79,0.4);
-            transition: transform 0.25s, box-shadow 0.25s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(45,106,79,0.5);
         }
 
-        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 1.8rem 1.3rem;
             background: #07070f;
             color: rgba(255,255,255,0.3);
             font-size: 0.72rem;
-            line-height: 1.6;
         }
-        footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
 
-        /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(28px); }
             to { opacity: 1; transform: translateY(0); }
@@ -682,13 +680,10 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Confetti for pledge */
         .confetti {
             position: fixed;
             width: 8px;
             height: 8px;
-            background: var(--green-soft);
             top: -10px;
             z-index: 999;
             animation: fall 2.5s linear forwards;
@@ -701,31 +696,21 @@
 </head>
 <body>
 
-    <!-- NAV -->
     <nav class="nav">
         <div class="nav-logo"><span>🇰🇿</span> Чистый Казахстан</div>
         <div class="nav-progress" id="progress"></div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO with mountain background -->
     <section class="hero" id="top">
         <div class="hero-content">
             <div class="hero-badge">🇰🇿 Национальная идея</div>
             <h1>Чистый<br>Казахстан</h1>
-            <p class="hero-sub">Наша природа — наше богатство и наследие. Давайте сохраним её вместе для будущих поколений.</p>
+            <p class="hero-sub">Наша природа — наше богатство и наследие. Давайте сохраним её вместе.</p>
             <div class="hero-stats">
-                <div class="hero-stat">
-                    <strong>9+</strong>
-                    <span>млн км²</span>
-                </div>
-                <div class="hero-stat">
-                    <strong>100+</strong>
-                    <span>нац.парков</span>
-                </div>
-                <div class="hero-stat">
-                    <strong>∞</strong>
-                    <span>красоты</span>
-                </div>
+                <div class="hero-stat"><strong>9+</strong><span>млн км²</span></div>
+                <div class="hero-stat"><strong>100+</strong><span>нац.парков</span></div>
+                <div class="hero-stat"><strong>∞</strong><span>красоты</span></div>
             </div>
         </div>
         <div class="scroll-hint">
@@ -734,34 +719,109 @@
         </div>
     </section>
 
-    <!-- NATURE -->
-    <section class="nature" id="nature">
-        <div class="reveal nature-intro">
-            <div class="section-label">01 · Начало</div>
-            <h2 class="section-title">Красота, которой можно гордиться</h2>
+    <!-- PHOTO GALLERY -->
+    <section class="gallery">
+        <div class="reveal">
+            <div class="section-label">Фотогалерея</div>
+            <h2 class="section-title">Горы, степи и озёра</h2>
             <div class="divider"></div>
-            <p class="section-text">От снежных вершин Тянь-Шаня до бескрайних степей, от бирюзовых озёр до густых лесов — Казахстан обладает уникальной природой, которая вдохновляет и дарит силу.</p>
+            <p class="section-text">Красота Казахстана в каждом кадре — от снежных вершин до золотых степей и бирюзовых озёр.</p>
+        </div>
+        <div class="photo-grid reveal">
+            <div class="photo-card wide">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80" alt="Горы Тянь-Шаня" loading="lazy">
+                <div class="caption">Горы Тянь-Шаня<span>Величественные вершины и чистый воздух</span></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Горное озеро" loading="lazy">
+                <div class="caption">Горные озёра<span>Кольсай, Алаколь</span></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Степь" loading="lazy">
+                <div class="caption">Золотые степи<span>Бескрайние просторы</span></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Лес" loading="lazy">
+                <div class="caption">Леса и долины<span>Зелёные лёгкие места</span></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Снежные горы" loading="lazy">
+                <div class="caption">Снежные пики<span>Алтай и Тянь-Шань</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTISTIC / PAINTING STYLE -->
+    <section class="art-section">
+        <div class="reveal">
+            <div class="section-label">Живопись природы</div>
+            <h2 class="section-title">Как на картине</h2>
+            <div class="divider"></div>
+            <p class="section-text">Природа Казахстана вдохновляет художников. Эти пейзажи выглядят как живые картины.</p>
+        </div>
+        <div class="art-grid reveal">
+            <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80" alt="Горный пейзаж" loading="lazy">
+                <div class="art-overlay"></div>
+                <div class="art-label">
+                    <h3>Утренние горы</h3>
+                    <p>Золотой свет на снежных вершинах</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1200&q=80" alt="Озеро и горы" loading="lazy">
+                <div class="art-overlay"></div>
+                <div class="art-label">
+                    <h3>Зеркало озера</h3>
+                    <p>Спокойствие и глубина природы</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1200&q=80" alt="Озеро на рассвете" loading="lazy">
+                <div class="art-overlay"></div>
+                <div class="art-label">
+                    <h3>Рассвет над водой</h3>
+                    <p>Мягкие краски природы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NATURE with photo cards -->
+    <section class="nature" style="background: linear-gradient(180deg, #1a2e28 0%, #122018 100%);">
+        <div class="reveal">
+            <div class="section-label">01 · Природа</div>
+            <h2 class="section-title">Четыре стихии Казахстана</h2>
+            <div class="divider"></div>
         </div>
         <div class="nature-grid reveal">
             <div class="nature-card">
-                <span class="icon">🏔️</span>
-                <h3>Горы</h3>
-                <p>Тянь-Шань, Алтай, Каратау, Джунгарский Алатау</p>
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Горы" loading="lazy">
+                <div class="info">
+                    <h3>Горы</h3>
+                    <p>Тянь-Шань, Алтай, Каратау</p>
+                </div>
             </div>
             <div class="nature-card">
-                <span class="icon">🌾</span>
-                <h3>Степи</h3>
-                <p>Самая большая сухая степь в мире — сердце страны</p>
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Степи" loading="lazy">
+                <div class="info">
+                    <h3>Степи</h3>
+                    <p>Бескрайние золотые просторы</p>
+                </div>
             </div>
             <div class="nature-card">
-                <span class="icon">🌊</span>
-                <h3>Озёра</h3>
-                <p>Балхаш, Алаколь, Большое Алматинское, Кольсай</p>
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80" alt="Озёра" loading="lazy">
+                <div class="info">
+                    <h3>Озёра</h3>
+                    <p>Балхаш, Алаколь, Кольсай</p>
+                </div>
             </div>
             <div class="nature-card">
-                <span class="icon">🌲</span>
-                <h3>Леса и парки</h3>
-                <p>Хвойные массивы, национальные парки и заповедники</p>
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80" alt="Леса" loading="lazy">
+                <div class="info">
+                    <h3>Леса</h3>
+                    <p>Хвойные и лиственные массивы</p>
+                </div>
             </div>
         </div>
         <div class="nature-places reveal">
@@ -774,170 +834,165 @@
                 <li>Катон-Карагай</li>
                 <li>Баянауль</li>
                 <li>Иле-Алатау</li>
-                <li>Каракер</li>
             </ul>
         </div>
     </section>
 
     <!-- PROBLEM -->
-    <section class="problem" id="problem">
+    <section class="problem">
         <div class="reveal">
             <div class="section-label">02 · Проблема</div>
             <h2 class="section-title">Загрязнение угрожает красоте</h2>
             <div class="divider"></div>
-            <p class="section-text">Мусор на улицах, пластиковые бутылки, пакеты и заброшенные территории медленно разрушают то, чем мы гордимся. Каждый брошенный окурок — это удар по будущему.</p>
+            <p class="section-text">Мусор на улицах, пластик и заброшенные территории разрушают то, чем мы гордимся.</p>
         </div>
         <div class="problem-list reveal">
             <div class="problem-item">
                 <div class="num">01</div>
                 <div>
                     <h3>Мусор в городах и парках</h3>
-                    <p>Отходы на улицах, во дворах, в скверах и на природных территориях портят вид и вредят здоровью</p>
+                    <p>Отходы на улицах, во дворах и на природных территориях</p>
                 </div>
             </div>
             <div class="problem-item">
                 <div class="num">02</div>
                 <div>
-                    <h3>Пластик и одноразовая упаковка</h3>
-                    <p>Пластиковые бутылки и пакеты разлагаются сотни лет, отравляя почву и воду</p>
+                    <h3>Пластик и пакеты</h3>
+                    <p>Разлагаются сотни лет и отравляют почву</p>
                 </div>
             </div>
             <div class="problem-item">
                 <div class="num">03</div>
                 <div>
-                    <h3>Заброшенные природные зоны</h3>
-                    <p>Берега рек и озёр, туристические тропы и пикник-зоны страдают от безответственности</p>
+                    <h3>Заброшенные зоны</h3>
+                    <p>Берега рек, озёр и туристические тропы</p>
                 </div>
             </div>
         </div>
         <div class="problem-fact reveal">
-            <strong>Факт:</strong> Один пластиковый пакет может разлагаться до 500 лет. Каждый из нас может остановить этот цикл прямо сегодня.
+            <strong>Факт:</strong> Один пластиковый пакет может разлагаться до 500 лет.
         </div>
     </section>
 
     <!-- ACTION -->
-    <section class="action" id="action">
+    <section class="action">
         <div class="reveal">
             <div class="section-label">03 · Решение</div>
             <h2 class="section-title">Что мы можем сделать</h2>
             <div class="divider"></div>
-            <p class="section-text">Изменения начинаются с маленьких действий. Школьники, студенты, семьи и волонтёры уже делают Казахстан чище каждый день.</p>
         </div>
         <div class="action-grid reveal">
             <div class="action-card">
                 <div class="icon-box">🤝</div>
                 <div>
                     <h3>Убирать территории</h3>
-                    <p>Участвовать в субботниках, очищать парки, дворы, берега рек и озёр вместе с соседями</p>
+                    <p>Субботники, парки, дворы и берега</p>
                 </div>
             </div>
             <div class="action-card">
                 <div class="icon-box">♻️</div>
                 <div>
                     <h3>Сортировать отходы</h3>
-                    <p>Разделять пластик, бумагу, стекло и органику — это простой шаг к переработке</p>
+                    <p>Пластик, бумага, стекло и органика</p>
                 </div>
             </div>
             <div class="action-card">
                 <div class="icon-box">🌱</div>
                 <div>
                     <h3>Сажать деревья</h3>
-                    <p>Участвовать в акциях озеленения, сажать деревья во дворах и парках</p>
+                    <p>Озеленение дворов и парков</p>
                 </div>
             </div>
             <div class="action-card">
                 <div class="icon-box">🗭</div>
                 <div>
                     <h3>Выбрасывать правильно</h3>
-                    <p>Использовать специальные контейнеры и никогда не оставлять мусор на природе</p>
+                    <p>Специальные контейнеры и без мусора на природе</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PEOPLE -->
-    <section class="people" id="people">
+    <section class="people">
         <div class="reveal">
             <div class="section-label">04 · Люди</div>
             <h2 class="section-title">Те, кто уже действует</h2>
             <div class="divider"></div>
-            <p class="section-text">Тысячи казахстанцев каждый день выходят на уборку, сажают деревья и вдохновляют других своим примером.</p>
         </div>
         <div class="people-grid reveal">
             <div class="people-card">
                 <div class="emoji">👨‍👩‍👧‍👦</div>
                 <h3>Семьи</h3>
-                <p>Учат детей беречь природу с малых лет</p>
+                <p>Учат детей беречь природу</p>
             </div>
             <div class="people-card">
                 <div class="emoji">👩‍🎓</div>
                 <h3>Студенты</h3>
-                <p>Организуют экоакции в университетах и городах</p>
+                <p>Организуют экоакции</p>
             </div>
             <div class="people-card">
                 <div class="emoji">🎓</div>
                 <h3>Школьники</h3>
-                <p>Участвуют в субботниках и зелёных уроках</p>
+                <p>Участвуют в субботниках</p>
             </div>
             <div class="people-card">
                 <div class="emoji">🤝</div>
                 <h3>Волонтёры</h3>
-                <p>Регулярно чистят парки и природные зоны</p>
+                <p>Чистят парки и зоны</p>
             </div>
         </div>
     </section>
 
     <!-- CONTRAST -->
-    <section class="contrast" id="contrast">
+    <section class="contrast">
         <div class="reveal centered">
             <div class="section-label">05 · Трансформация</div>
             <h2 class="section-title">До и После</h2>
             <div class="divider"></div>
-            <p class="section-text" style="margin:0 auto;">Каждое действие меняет картину. Загрязнённая территория может стать чистой и красивой.</p>
         </div>
         <div class="contrast-compare reveal">
             <div class="before">
                 <div class="label">До</div>
                 <span class="emoji">🗭</span>
                 <h3>Загрязнение</h3>
-                <p>Мусор, пластик, заброшенные места, серый вид</p>
+                <p>Мусор и заброшенные места</p>
             </div>
             <div class="after">
                 <div class="label">После</div>
                 <span class="emoji">🌿</span>
                 <h3>Чистота</h3>
-                <p>Зелень, порядок, свежий воздух, жизнь</p>
+                <p>Зелень и порядок</p>
             </div>
         </div>
     </section>
 
     <!-- TIPS -->
-    <section class="tips" id="tips">
+    <section class="tips">
         <div class="reveal">
             <div class="section-label">06 · Практика</div>
             <h2 class="section-title">Начни сегодня</h2>
             <div class="divider"></div>
-            <p class="section-text">Простые привычки, которые меняют окружающий мир. Выбери хотя бы одно и начни прямо сейчас.</p>
         </div>
         <div class="tips-list reveal">
-            <div class="tip-item"><div class="check">✓</div><span>Бери с собой многоразовую сумку</span></div>
-            <div class="tip-item"><div class="check">✓</div><span>Откажись от пластиковых пакетов в магазинах</span></div>
-            <div class="tip-item"><div class="check">✓</div><span>Сортируй мусор дома и на работе</span></div>
-            <div class="tip-item"><div class="check">✓</div><span>Участвуй в местных субботниках</span></div>
-            <div class="tip-item"><div class="check">✓</div><span>Сажай деревья и цветы во дворе</span></div>
-            <div class="tip-item"><div class="check">✓</div><span>Расскаживай друзьям о важности чистоты</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Бери многоразовую сумку</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Откажись от пластиковых пакетов</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Сортируй мусор дома</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Участвуй в субботниках</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Сажай деревья и цветы</span></div>
+            <div class="tip-item"><div class="check">✓</div><span>Расскаживай о чистоте</span></div>
         </div>
     </section>
 
     <!-- PLEDGE -->
-    <section class="pledge" id="pledge">
+    <section class="pledge">
         <div class="reveal centered">
             <div class="section-label">07 · Обещание</div>
             <h2 class="section-title">Сделай свой выбор</h2>
             <div class="divider"></div>
         </div>
         <div class="pledge-box reveal">
-            <p>Я обещаю беречь природу Казахстана: не мусорить, сортировать отходы, участвовать в уборках и вдохновлять других.</p>
+            <p>Я обещаю беречь природу Казахстана: не мусорить, сортировать, убирать и вдохновлять других.</p>
             <button class="pledge-btn" id="pledgeBtn" onclick="makePledge()">
                 <span>🌱</span> Я присоединяюсь
             </button>
@@ -957,37 +1012,30 @@
                 <span>Сажай</span>
                 <span>Береги природу</span>
             </div>
-            <p class="final-cta">Каждый может сделать Казахстан чище.<br>Начни сегодня — и природа ответит тебе добром.</p>
+            <p class="final-cta">Каждый может сделать Казахстан чище.<br>Начни сегодня.</p>
             <a href="#top" class="btn">Вернуться к началу</a>
         </div>
     </section>
 
     <footer>
-        Чистый Казахстан · С любовью к природе · 2026<br>
-        Сделано для тех, кто хочет видеть страну чистой
+        Чистый Казахстан · С любовью к природе · 2026
     </footer>
 
     <script>
-        // Progress bar
         const progress = document.getElementById('progress');
         window.addEventListener('scroll', () => {
             const h = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = (window.scrollY / h) * 100;
-            progress.style.width = scrolled + '%';
+            progress.style.width = (window.scrollY / h) * 100 + '%';
         });
 
-        // Reveal on scroll
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.12 });
         reveals.forEach(el => observer.observe(el));
 
-        // Pledge
         let pledged = localStorage.getItem('cleanKazakhstanPledge');
         const btn = document.getElementById('pledgeBtn');
         const countEl = document.getElementById('pledgeCount');
@@ -1006,8 +1054,6 @@
             pledged = true;
             localStorage.setItem('cleanKazakhstanPledge', 'true');
             updatePledgeUI();
-
-            // Confetti
             for (let i = 0; i < 40; i++) {
                 const c = document.createElement('div');
                 c.className = 'confetti';
